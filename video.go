@@ -73,6 +73,56 @@ func (m *Manager) VideoList(req VideoListReq) (res VideoListRes, err error) {
 	return res, err
 }
 
+// IFrameByItemReq 通过item获取iframe请求
+type IFrameByItemReq struct {
+	ClientKey string // 用户ClientKey
+	ItemID    string //视频ID
+}
+
+// IFrameByItemRes 通过item获取iframe响应
+type IFrameByItemRes struct {
+	Data  IFrameByItemResData `json:"data"`
+	Extra DYExtra             `json:"extra"`
+}
+
+type IFrameByItemResData struct {
+	IFrameCode  string `json:"iframe_code"`  // IFrame代码片段
+	VideoTitle  string `json:"video_title"`  // 视频标题
+	VideoWidth  int64  `json:"video_width"`  // 视频宽度
+	VideoHeight int64  `json:"video_height"` // 视频高度
+}
+
+// IFrameByItem 通过视频itemid 查找iframe
+func (m *Manager) IFrameByItem(req IFrameByItemReq) (res IFrameByItemRes, err error) {
+	err = m.client.CallWithJson(context.Background(), &res, "GET", m.url("%s?client_key=%s&item_id=%s", conf.API_IFRAME_BY_ITEM, req.ClientKey, req.ItemID), nil, nil)
+	return res, err
+}
+
+// IFrameByAwemeIDReq 通过AwemeID获取iframe请求
+type IFrameByAwemeIDReq struct {
+	//ClientKey string // 用户ClientKey
+	AwemeID string //视频ID
+}
+
+// IFrameByItemRes 通过item获取iframe响应
+type IFrameByAwemeIDRes struct {
+	Data  IFrameByAwemeIDResData `json:"data"`
+	Extra DYExtra                `json:"extra"`
+}
+
+type IFrameByAwemeIDResData struct {
+	IFrameCode  string `json:"iframe_code"`  // IFrame代码片段
+	VideoTitle  string `json:"video_title"`  // 视频标题
+	VideoWidth  int64  `json:"video_width"`  // 视频宽度
+	VideoHeight int64  `json:"video_height"` // 视频高度
+}
+
+// IFrameByItem 通过视频itemid 查找iframe
+func (m *Manager) IFrameByAwemeID(req IFrameByAwemeIDReq) (res IFrameByAwemeIDRes, err error) {
+	err = m.client.CallWithJson(context.Background(), &res, "GET", m.url("%s?video_id=%s", conf.API_IFRAME_BY_VIDEO, req.AwemeID), nil, nil)
+	return res, err
+}
+
 // VideoUploadReq 上传视频到文件服务器
 type VideoUploadReq struct {
 	OpenId      string // 通过/oauth/access_token/获取，用户唯一标志

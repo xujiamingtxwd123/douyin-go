@@ -28,6 +28,10 @@ const (
 	// API_VIDEO_LIST 查询授权账号视频数据
 	API_VIDEO_LIST = "/api/douyin/v1/video/video_list"
 
+	API_IFRAME_BY_ITEM = "/api/douyin/v1/video/get_iframe_by_item"
+
+	API_IFRAME_BY_VIDEO = "/api/douyin/v1/video/get_iframe_by_video"
+
 	// API_VIDEO_UPLOAD 上传视频到文件服务器
 	API_VIDEO_UPLOAD = "/video/upload/"
 
