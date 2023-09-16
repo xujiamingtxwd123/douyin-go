@@ -81,8 +81,8 @@ type IFrameByItemReq struct {
 
 // IFrameByItemRes 通过item获取iframe响应
 type IFrameByItemRes struct {
-	Data  IFrameByItemResData `json:"data"`
-	Extra DYExtra             `json:"extra"`
+	Data IFrameByItemResData `json:"data"`
+	BaseErr
 }
 
 type IFrameByItemResData struct {
@@ -106,8 +106,8 @@ type IFrameByAwemeIDReq struct {
 
 // IFrameByItemRes 通过item获取iframe响应
 type IFrameByAwemeIDRes struct {
-	Data  IFrameByAwemeIDResData `json:"data"`
-	Extra DYExtra                `json:"extra"`
+	Data IFrameByAwemeIDResData `json:"data"`
+	BaseErr
 }
 
 type IFrameByAwemeIDResData struct {
